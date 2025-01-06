@@ -277,8 +277,8 @@ impl CostModel {
     /// Return the instruction data bytes cost.
     fn get_instructions_data_cost(transaction: &impl SVMMessage) -> u64 {
         let ix_data_bytes_len_total: u64 = transaction
-            .program_instructions_iter()
-            .map(|(_, instruction)| instruction.data.len() as u64)
+            .instructions_iter()
+            .map(|instruction| instruction.data.len() as u64)
             .sum();
 
         ix_data_bytes_len_total / INSTRUCTION_DATA_BYTES_COST
